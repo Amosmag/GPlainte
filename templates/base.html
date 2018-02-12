@@ -1,0 +1,547 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<!--
+  Name: Flatty - Flat Administration Template
+  Website: https://wrapbootstrap.com/theme/flatty-flat-administration-template-WB0P6NR1N?ref=metheus
+  Version: 2.4.1
+-->
+<html lang='en'>
+  
+<!-- Mirrored from flatty-v2-4-1.bublinastudio.com/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Sep 2017 09:37:39 GMT -->
+<head>
+    <title>GPlainte</title>
+    <meta content='all' name='robots'>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href='/static/images/meta_icons/ARCEP_icon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href='/static/images/meta_icons/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+    {% block style %}{% endblock %}
+
+    <link href="/static/stylesheets/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/stylesheets/light-theme.css" rel="stylesheet" type="text/css" media="all" id="color-settings-body-color" />
+
+    <link href="/static/stylesheets/theme-colors.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/stylesheets/demo.css" rel="stylesheet" type="text/css" media="all" />
+
+    <link href="/static/stylesheets/plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/stylesheets/plugins/bootstrap_datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/stylesheets/plugins/bootstrap_switch/bootstrap-switch.css" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body class='contrast-sea-blue fixed-header fixed-navigation'>
+    <header>
+      <nav class='navbar navbar-default navbar-fixed-top'>
+        <a class='navbar-brand' href='{% url "index" %}'>
+          <img width="81" height="21" class="logo" alt="Flatty" src="/static/images/ARCEP.png" />
+          <img width="21" height="21" class="logo-xs" alt="Flatty" src="/static/images/ARCEP.png" />
+        </a>
+        <a class='toggle-nav btn pull-left' href='#'>
+          <i class='fa fa-bars'></i>
+        </a>
+        <ul class='nav'>
+          <li class='dropdown light only-icon'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <i class='fa fa-cog'></i>
+            </a>
+            <ul class='dropdown-menu color-settings'>
+              <li class='color-settings-body-color'>
+                <div class='color-title'>Change body color</div>
+                <a data-change-to='/static/stylesheets/light-theme.css' href='#'>
+                  Light
+                  <small>(default)</small>
+                </a>
+                <a data-change-to='/static/stylesheets/dark-theme.css' href='#'>
+                  Dark
+                </a>
+                <a data-change-to='/static/stylesheets/dark-blue-theme.css' href='#'>
+                  Dark blue
+                </a>
+              </li>
+              <li class='divider'></li>
+              <li class='color-settings-contrast-color'>
+                <div class='color-title'>Change contrast color</div>
+                <a data-change-to="contrast-red" href="#"><i class='fa fa-cog text-red'></i>
+                Red
+                <small>(default)</small>
+                </a>
+                <a data-change-to="contrast-blue" href="#"><i class='fa fa-cog text-blue'></i>
+                Blue
+                </a>
+                <a data-change-to="contrast-orange" href="#"><i class='fa fa-cog text-orange'></i>
+                Orange
+                </a>
+                <a data-change-to="contrast-purple" href="#"><i class='fa fa-cog text-purple'></i>
+                Purple
+                </a>
+                <a data-change-to="contrast-green" href="#"><i class='fa fa-cog text-green'></i>
+                Green
+                </a>
+                <a data-change-to="contrast-muted" href="#"><i class='fa fa-cog text-muted'></i>
+                Muted
+                </a>
+                <a data-change-to="contrast-fb" href="#"><i class='fa fa-cog text-fb'></i>
+                Facebook
+                </a>
+                <a data-change-to="contrast-dark" href="#"><i class='fa fa-cog text-dark'></i>
+                Dark
+                </a>
+                <a data-change-to="contrast-pink" href="#"><i class='fa fa-cog text-pink'></i>
+                Pink
+                </a>
+                <a data-change-to="contrast-grass-green" href="#"><i class='fa fa-cog text-grass-green'></i>
+                Grass green
+                </a>
+                <a data-change-to="contrast-sea-blue" href="#"><i class='fa fa-cog text-sea-blue'></i>
+                Sea blue
+                </a>
+                <a data-change-to="contrast-banana" href="#"><i class='fa fa-cog text-banana'></i>
+                Banana
+                </a>
+                <a data-change-to="contrast-dark-orange" href="#"><i class='fa fa-cog text-dark-orange'></i>
+                Dark orange
+                </a>
+                <a data-change-to="contrast-brown" href="#"><i class='fa fa-cog text-brown'></i>
+                Brown
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class='dropdown dark user-menu'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <img width="23" height="23" alt="Photo" src="/static/media/{{ user.photo }}" />
+              <span class='user-name'>{{ user.nom_prenoms }}</span>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li>
+                <a href='{% url "profil" user.pk %}'>
+                  <i class='fa fa-user'></i>
+                  Profil
+                </a>
+              </li>
+              <li>
+                <a href='#'>
+                  <i class='fa fa-cog'></i>
+                  Paramètre
+                </a>
+              </li>
+              <li class='divider'></li>
+              <li>
+                <a href='{% url "deconnexion" %}'>
+                  <i class='fa fa-sign-out'></i>
+                  Déconnexion
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form action='http://flatty-v2-4-1.bublinastudio.com/search_results.html' class='navbar-form navbar-right hidden-xs' method='get'>
+          <button class='btn btn-link fa fa-search' name='button' type='submit'></button>
+          <div class='form-group'>
+            <input type="text" name="q" value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" />
+          </div>
+        </form>
+      </nav>
+    </header>
+    <div id='wrapper'>
+      <div id='main-nav-bg'></div>
+      <nav class='main-nav-fixed' id='main-nav'>
+        <div class='navigation'>
+          <div class='search'>
+            <form action='http://flatty-v2-4-1.bublinastudio.com/search_results.html' method='get'>
+              <div class='search-wrapper'>
+                <input type="text" name="q" value="" class="search-query form-control" placeholder="Search..." autocomplete="off" />
+                <button class='btn btn-link fa fa-search' name='button' type='submit'></button>
+              </div>
+            </form>
+          </div>
+          <ul class='nav nav-stacked'>
+            <li class=''>
+              <a href='{% url "dashboard" %}'>
+                <i class='fa fa-tachometer'></i>
+                <span>Tableau de board</span>
+              </a>
+            </li>
+            <li>
+              <a class='dropdown-collapse ' href='#'>
+                <i class='fa fa-tint'></i>
+                <span>Dossier de plainte</span>
+                <i class='fa fa-angle-down angle-down'></i>
+              </a>
+              <ul style="display: block;" class='nav nav-stacked'>
+                <li class=''>
+                  <a href='{% url "Nouveau_dossier" %}'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-plus'></i>
+                    </div>
+                    <span>Nouveau dossier</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a data-toggle="modal" href='#ouverture'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-folder'></i>
+                    </div>
+                    <span>Mes dossiers</span><span class='badge pull-right text-right badge-info'>{{ totale }}</span>
+                  </a>
+                </li>
+                  <li class=''>
+                  <a href='{% url "encours" %}'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-folder-open'></i>
+                    </div>
+                    <span>En cours de traitement</span>    <span class='badge pull-right text-right badge-warning'>{{ encours }}</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href='{% url "dossiers_cloture" %}'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-archive'></i>
+                    </div>
+                    <span>Dossiers cloturés</span>    <span class='badge align-right pull-right text-right badge-success'>{{ cloture }}</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class='dropdown-collapse ' href='#'>
+                <i class='fa fa-cogs'></i>
+                <span>Statistiques</span>
+                <i class='fa fa-angle-down angle-down'></i>
+              </a>
+              <ul class='nav nav-stacked'>
+                <li class=''>
+                  <a href='{% url "graphe_par_operateur" %}'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-line-chart'></i>
+                    </div>
+                    <span>Par opérateur sur l'année</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href='{% url "total_par_operateur" %}'>
+                    <div class='icon'>
+                      <i style="color: #1770b3;" class='fa fa-bar-chart-o'></i>
+                    </div>
+                    <span>Totale par opérateur</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href='{% url "graphe_par_categorie" %}'>
+                    <div class='icon'>
+                      <i class='fa fa-pie-chart'></i>
+                    </div>
+                    <span>Par catégorie de plainte</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href='{% url "graphe_par_canal" %}'>
+                    <div class='icon'>
+                      <i class='fa fa-pie-chart'></i>
+                    </div>
+                    <span>Par canal de réception</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href='{% url "graphe_par_dossier" %}'>
+                    <div class='icon'>
+                      <i class='fa fa-list-ul'></i>
+                    </div>
+                    <span>Traitement des dossiers</span>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li>
+              <a class='dropdown-collapse in' href='#'>
+                <i class='fa fa-book'></i>
+                <span>Autres</span>
+                <i class='fa fa-angle-down angle-down'></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <!-- Modal -->
+        <div align="center" class="modal fade" id="ouverture" tabindex="-1" role="dialog" aria-hidden="true" >
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-original-title="" title="">×</button>
+                  <h4 class="modal-title">Ouverture d'un dossier de plainte</h4>
+                </div>
+                <!--<form method="post" enctype="multipart/form-data" action="">-->
+                  <div class="modal-body">
+                    <p>Veuiller sélectionner la référence du dossier</p>
+
+                      <table class="data-table-column-filter table table-bordered table-striped text-center">
+                        <thead>
+                        <tr>
+                          <th  class="text-center">Référence</th>
+                          <th  class="text-center">Nom de plaignant</th>
+                          <th  class="text-center">Prénoms</th>
+                          <th  class="text-center">Catégorie</th>
+                          <th  class="text-center">Opérateur</th>
+                          <th  class="text-center">Canal</th>
+                        </tr>
+                        </thead>
+                            <tbody>
+                            {% for objet in plaintedb %}
+                                <tr>
+                                  <td>
+                                    <span class="name"><a href="{% url 'traitement' objet.id  %}">{{ objet.reference }}</a></span>
+                                  </td>
+                                  <td class="hidden-phone">{{ objet.nom }}</td>
+                                  <td class="hidden-phone">{{ objet.prenoms }}</td>
+                                  <td class="hidden-phone">{{ objet.categorie.categorie }}</td>
+                                  <td class="hidden-phone">{{ objet.operateur.operateur}}</td>
+                                  <td class="hidden-phone">{{ objet.canal.canal }}</td>
+
+                                        </tr>
+                            {% endfor %}
+                                        </tbody>
+
+                                        </table>
+
+                        {% csrf_token %}
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+
+                  <a type="button" class="btn btn-default" href="">Annuler</a>
+                </div>
+                  <!--<button type="submit" class="btn btn-primary" data-original-title="" title="">Valider</button>
+
+
+                    </form>-->
+              </div>
+            </div>
+
+        </div>
+          <!-- Modal Small End -->
+       <section id='content'>                                  <!-- Modal Small End -->
+      {% block section %}
+
+      {% endblock %}
+
+    <footer class="grp-fixed-footer" id='footer'>
+            <div class='footer-wrapper'>
+              <div class='row'>
+                <div class='col-sm-6 text'>
+                  Copyright © 2018 ARCEP-BENIN Tout droits résevés
+                </div>
+                <div class='col-sm-6 buttons'>
+                  <a class="btn btn-link" href="index.html">Contacter le développeur</a>
+                  <a class="btn btn-link" href="http://www.arcep.bj">www.arcep.bj</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+         </div>
+      </section>
+    </div>
+
+    {% block script %}
+    <!-- / jquery [required] -->
+    <script src="/static/javascripts/jquery/jquery.min.js" type="text/javascript"></script>
+    <!-- / jquery mobile (for touch events) -->
+    <script src="/static/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+    <!-- / jquery ui -->
+    <script src="/static/javascripts/jquery/jquery-ui.min.js" type="text/javascript"></script>
+    <!-- / jQuery UI Touch Punch -->
+    <script src="/static/javascripts/jquery/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+    <!-- / bootstrap [required] -->
+    <script src="/static/javascripts/bootstrap/bootstrap.js" type="text/javascript"></script>
+    <!-- / modernizr -->
+    <script src="/static/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
+    <!-- / retina -->
+    <script src="/static/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
+    <!-- / theme file [required] -->
+    <script src="/static/javascripts/theme.js" type="text/javascript"></script>
+    <!-- / demo file [not required!] -->
+    <script src="/static/javascripts/demo.js" type="text/javascript"></script>
+    <!-- / START - page related files and scripts [optional] -->
+    <script src="/static/javascripts/plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/bootstrap_datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <!-- / START - page related files and scripts [optional] -->
+    <script src="/static/javascripts/plugins/fuelux/wizard.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <!-- / START - page related files and scripts [optional] -->
+    <script src="/static/javascripts/plugins/flot/excanvas.min.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/sparklines/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="/static/javascripts/plugins/flot/jquery.flot.pie.min.js" type="text/javascript"></script>
+    <script src="/static/code/highcharts.js"></script>
+    <script src="/static/code/modules/series-label.js"></script>
+    <script src="/static/code/modules/exporting.js"></script>
+
+     <script type="text/javascript">
+
+Highcharts.chart('par_operateur', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: "Evolution du nombre de plaintes reçues par opérateur sur l'année"
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: { // don't display the dummy year
+            month: ' %b',
+            year: '%b'
+        },
+        title: {
+            text: 'Mois'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Nombre de plaintes reçues'
+        },
+        min: 0
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x: %b}: {point.y:.f} plaintes'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'MTN',
+        // Define the data points. All series have a dummy year
+        // of 1970/71 in order to be compared on the same x axis. Note
+        // that in JavaScript, months start at 0 for January, 1 for February etc.
+        data: [
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 28],
+            [Date.UTC(2017, 2, 1), 25],
+            [Date.UTC(2017, 3, 1), 2],
+            [Date.UTC(2017, 4, 1), 28],
+            [Date.UTC(2017, 5, 1), 28],
+            [Date.UTC(2017, 6, 1), 47],
+            [Date.UTC(2017, 7, 1), 79],
+            [Date.UTC(2017, 8, 1), 72],
+            [Date.UTC(2017, 9, 1), 2],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+
+        ]
+    }, {
+        name: 'MOOV',
+        data: [
+
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 15],
+            [Date.UTC(2017, 2, 1), 17],
+            [Date.UTC(2017, 3, 1), 21],
+            [Date.UTC(2017, 4, 1), 12],
+            [Date.UTC(2017, 5, 1), 8],
+            [Date.UTC(2017, 6, 1), 11],
+            [Date.UTC(2017, 7, 1), 18],
+            [Date.UTC(2017, 8, 1), 22],
+            [Date.UTC(2017, 9, 1), 30],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+        ]
+    }, {
+        name: 'GLO',
+        data: [
+
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 21],
+            [Date.UTC(2017, 2, 1), 13],
+            [Date.UTC(2017, 3, 1), 14],
+            [Date.UTC(2017, 4, 1), 11],
+            [Date.UTC(2017, 5, 1), 18],
+            [Date.UTC(2017, 6, 1), 22],
+            [Date.UTC(2017, 7, 1), 13],
+            [Date.UTC(2017, 8, 1), 9],
+            [Date.UTC(2017, 9, 1), 21],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+        ]
+    }]
+});
+		</script>
+
+    <script type="text/javascript">
+
+// Build the chart
+Highcharts.chart('par_canal', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ""
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Canal',
+        colorByPoint: true,
+        data: [{
+            name: 'Ligne verte',
+            y: 56.33
+        }, {
+            name: 'Site web',
+            y: 24.03,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Courrier',
+            y: 10.38
+        }, {
+            name: 'Email',
+            y: 4.77
+        }]
+    }]
+});
+		</script>
+
+    {% endblock %}
+    <!-- / END - page related files and scripts [optional] -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','/static/javascripts//analytics.js','ga');
+      ga('create', 'UA-42989202-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </body>
+
+<!-- Mirrored from flatty-v2-4-1.bublinastudio.com/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Sep 2017 09:37:39 GMT -->
+</html>

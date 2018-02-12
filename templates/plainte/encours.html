@@ -1,0 +1,107 @@
+{% extends base %}
+{% block style %}<link href="/static/stylesheets/plugins/datatables/datatables.css" rel="stylesheet" type="text/css" media="all" />{% endblock %}
+{% block section %}
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header'>
+                    <h1 class='pull-left'>
+                      <i class='fa fa-table'></i>
+                      <span>Dossiers en cours de traitement</span>
+                    </h1>
+                    <div class='pull-right'>
+                      <ul class='breadcrumb'>
+                        <li>
+                          <a href='index-2.html'>
+                            <i class='fa fa-bar-chart-o'></i>
+                          </a>
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li class='active'>Dossiers en cours de traitement</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='box bordered-box fb-border' style='margin-bottom:0;'>
+                    <div class='box-header blue-background'>
+                      <div class='title'>Liste des dossiers en cours de traitement</div>
+                      <div class='actions'>
+                        <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                        </a>
+                        <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class='box-content box-no-padding'>
+                      <div class='responsive-table'>
+                        <div class='scrollable-area'>
+                          <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                            <thead>
+                              <tr>
+                                <th style="width:15%" class="text-center">Référence</th>
+                                <th style="width:20%" class="text-center">Identité du plaignant</th>
+                                <th style="width:15%" class="text-center">Catégorie</th>
+                                <th style="width:8%"  class="text-center">Opérateur</th>
+                                <th style="width:10%" class="text-center">Canal</th>
+                                <th style="width:30%" class="text-center">Objet de la plainte</th>
+                                <th style="width:17%" class="text-center">Actions</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in liste_encours %}
+                              <tr>
+
+                                <td class="text-center">{{ object.reference }}</td>
+                                <td class="text-center">{{ object.nom }} {{ object.prenoms }}</td>
+                                <td class="text-center">{{ object.categorie.categorie }}</td>
+                                <td class="text-center">{{ object.operateur.operateur }}</td>
+                                <td class="text-center">{{ object.canal.canal }}</td>
+                                <td class="text-center">{{ object.objet }}</td>
+
+                                <td>
+                                  <div class='text-right'>
+                                    <a  href='{% url "traitement" object.pk %}'>
+                                      <i class='fa fa-edit fa-2x'> | </i>
+                                    </a>
+                                    <a  href='#'>
+                                      <i class='fa fa-eye fa-2x '></i>
+                                    </a>
+                                  </div>
+
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            <tfoot>
+                              <tr>
+                                <th>Référence</th>
+                                <th>Identité du plaignant</th>
+                                <th>Catégorie</th>
+                                <th>Opérateur</th>
+                                <th>Canal</th>
+                                <th colspan='2'>Objet de la plainte</th>
+                              </tr>
+                            </tfoot>
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+{% endblock %}

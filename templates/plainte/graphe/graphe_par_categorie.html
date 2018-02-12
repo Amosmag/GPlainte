@@ -1,0 +1,91 @@
+{% extends base %}
+{% block style %}
+    <style type="text/css">
+@import '/static/code/css/highcharts.css';
+
+#container {
+	height: 400px;
+	max-width: 800px;
+	min-width: 320px;
+	margin: 0 auto;
+}
+.highcharts-pie-series .highcharts-point {
+	stroke: #EDE;
+	stroke-width: 2px;
+}
+.highcharts-pie-series .highcharts-data-label-connector {
+	stroke: silver;
+	stroke-dasharray: 2, 2;
+	stroke-width: 2px;
+}
+		</style>
+{% endblock %}
+
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+              <div class='page-header page-header-with-buttons'>
+                <h1 class='pull-left'>
+                  <i class='fa fa-pie-chart'></i>
+                  <span>Plaintes reçues par catégorie</span>
+                </h1>
+
+              </div>
+                <div class='row'>
+                <div class='col-sm-12 box'>
+                  <div class='box-header'>
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                    <div id="container" style="min-width: 800px; height: 450px; margin: 0 auto"></div>
+                  </div>
+                </div>
+
+                </div>
+
+
+
+<script src="/static/code/highcharts.js"></script>
+<script src="/static/code/modules/exporting.js"></script>
+
+
+		<script type="text/javascript">
+
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Classement par catégorie de plainte'
+    },
+
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+
+    series: [{
+        type: 'pie',
+        name: 'total',
+        allowPointSelect: true,
+        keys: ['name', 'y', 'selected', 'sliced'],
+        data: [
+            ['Mobile Money', 29.9, false],
+            ['Facturation', 71.5, false],
+            ['Qualité de service', 106.4, true, true],
+            ['Site radios', 129.2, false],
+            ['Offres et services', 144.0, false],
+            ['Couverture', 176.0, false]
+
+        ],
+        showInLegend: true
+    }]
+});
+		</script>
+
+{% endblock %}

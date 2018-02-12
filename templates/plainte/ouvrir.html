@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% block section %}
+<section id='content'>
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header'>
+                    <h1 class='pull-left'>
+                      <i class='fa fa-pencil-square-o'></i>
+                      <span>Dossier de plainte</span>
+                    </h1>
+                    <div class='pull-right'>
+                      <ul class='breadcrumb'>
+                        <li>
+                          <a href='index-2.html'>
+                            <i class='fa fa-bar-chart-o'></i>
+                          </a>
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li>
+                          Dossiers
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li class='active'>Ouvrir</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='box'>
+                    <div class='box-content box-padding'>
+                      <div class='fuelux'><div class='wizard' data-initialize='wizard' id='myWizard'>
+                          <div class='steps-container'>
+                            <ul class='steps'>
+                              <li class='active' data-step='1'>
+                                <span class='step'>Identité du plaignant</span>
+                              </li>
+                              <li data-step='2'>
+                                <span class='step'>Synthèse de la plainte</span>
+                              </li>
+                              <li data-step='3'>
+                                <span class='step'>Traitement</span>
+                              </li>
+                              <li data-step='4'>
+                                <span class='step'>Conclusion</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class='actions'>
+                            <button class='btn btn-xs btn-prev'>
+                              <i class='fa fa-arrow-left'></i>
+                              Prev
+                            </button>
+                            <button class='btn btn-xs btn-success btn-next' data-last='Finish'>
+                              Next
+                              <i class='fa fa-arrow-right'></i>
+                            </button>
+                          </div>
+                          <hr class='hr-normal'>
+                          <form action="{% url 'traitement' form.pk %}" accept-charset="UTF-8" class="form" style="margin-bottom: 0;" method="post">
+                              {% csrf_token %}
+                              <div class='step-content'>
+
+                              <div class='step-pane active' data-step='1'>
+                              <div class='col-sm-6'>
+                                  <div class='form-group'>
+                        <label for='inputText'>Nom</label>
+                        <input class='form-control' readonly id='inputText' placeholder='Nom de plaignant' name="nom" type='text' value="{{ form.nom.value }}">
+                      </div>
+                      <div class='form-group'>
+                        <label for='inputPassword'>Prénoms</label>
+                        <input readonly class='form-control' name="prenoms" id='inputPassword' placeholder='Prénoms du plaignant' type='text' value="{{ form.prenoms.value }}">
+                      </div>
+                                  <div class='form-group'>
+                        <label for='inputPassword'>Contact</label>
+                        <input readonly class='form-control' name="contact" id='inputPassword' placeholder='Contact du plaignant' type='text' value="{{ form.contact.value }}">
+                      </div>
+                                  <div class='form-group'>
+                        <label for='inputEmail'>Email</label>
+                        <input readonly class='form-control' name="email" id='inputPassword' placeholder='Email du plaignant' type='email' value="{{ form.email.value }}">
+                      </div>
+                              </div>
+                                  <div class='col-sm-6'>
+                                  <div class='form-group'>
+                        <label for='inputText'>profession</label>
+                        <input readonly class='form-control' name="profession" id='inputText' placeholder='Profession du plaignant' type='text' value="{{ form.profession.value }}">
+                      </div>
+                      <div class='form-group'>
+                        <label for='inputPassword'>Nationalité</label>
+                        <input readonly class='form-control' name="nationalite" id='inputPassword' placeholder='Nationalité du plaignant' type='text' value="{{ form.nationalite.value }}">
+                      </div>
+                                      <div class='form-group'>
+                        <label for='inputPassword'>Adresse</label>
+                        <input readonly class='form-control' name="adresse" id='inputPassword' placeholder='Adresse du plaignant' type='text' value="{{ form.adresse.value }}">
+                      </div>
+                                      <div class='form-group'>
+                        <label class='control-label' for='inputDate'>Date d'entrée</label>
+                                    <div class='datepicker-input input-group' id='datepicker'>
+                          <input readonly class='form-control' data-format='YYYY-MM-DD' placeholder='Date d"entrée' type='text' name="date_entree" value="{{ form.date_entree.value }}">
+                          <span class='input-group-addon'>
+                            <span class='fa fa-calendar'></span>
+                          </span>
+
+                              </div>
+                      </div>
+                              </div>
+                            </div>
+                            <div class='step-pane' data-step='2'>
+
+                              <div class='form-group col-sm-3'>
+                                <label class='control-label' for='selectCanal'>Canal</label>
+                                <div class='controls'>
+                                    <select readonly name="canal" class="form-control ">
+                                        <option {{ form.canal }} </option>
+                                    </select>
+                                </div>
+                              </div>
+
+                                <div class='form-group col-sm-3'>
+                                    <label class='control-label' for='selectCanal'>Opérateur</label>
+                                  <div class='controls'>
+                                    <select readonly name="operateur" class="form-control ">
+                                        <option {{ form.operateur }} </option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <div class='form-group col-sm-3'>
+                                    <label class='control-label' for='selectCanal'>Catégorie de plainte</label>
+                                  <div class='controls'>
+                                    <select readonly name="categorie" class="form-control ">
+                                        <option {{ form.categorie }} </option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <div class='form-group col-sm-3'>
+                                <label class='control-label' for='inputDate'>Date du constat</label>
+                                    <div class='datepicker-input input-group' id='datepicker'>
+                          <input readonly class='form-control' name="date_constat" data-format='YYYY-MM-DD' placeholder='Date du constat' type='text' value="{{ form.date_constat.value }}">
+                          <span class='input-group-addon'>
+                            <span class='fa fa-calendar'></span>
+                          </span>
+                            </div>
+                            </div>
+
+                                <div class='form-group col-sm-9'>
+                                <label class='control-label' for='inputTextArea'>Objet de la plainte</label>
+                                <div class='controls'>
+                                    <textarea readonly class='form-control' name="objet" id='inputTextArea' placeholder='Saisissez ici l"objet de la plainte de plaignant'>{{ form.objet.value }}</textarea>
+                                </div>
+                              </div>
+
+                                <div class='form-group col-sm-3'>
+                                <label class='control-label' for='inputText'>Référence</label>
+
+                          <input readonly class='form-control' name="reference" placeholder='reference' type='text' value="{{ form.reference.value }}">
+                                </div>
+
+                                 <div class='form-group col-sm-3'>
+                                <label class='control-label' for='inputText'>Intructeur en charge du dossier</label>
+                                    <input readonly class='form-control' name="instructeur" placeholder='instructeur' type='text' value="{{ user.nom_prenoms }}">
+                                </div>
+
+                                <div class='form-group col-sm-3'>
+
+                                    <input class='form-control hide' name="annee" placeholder='annee' type='text' value="{{ annee }}">
+                                </div>
+
+                                <div class='form-group col-sm-3'>
+
+                                    <input class='form-control hide' name="mois" placeholder='mois' type='text' value="{{ mois }}" >
+                                </div>
+
+                            </div>
+
+                            <div class='step-pane' data-step='3'>
+
+                              <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Analyse préliminaire</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="analyses" id='inputTextArea' placeholder='Analyse préliminaire' rows='3'>{{ form.analyses.value }}</textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Recommandation</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="recommandations" id='inputTextArea' placeholder='Recommandation' rows='3'></textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Actions entreprises</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="actions_entreprises" id='inputTextArea' placeholder='Actions entreprises' rows='3'></textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Résultat</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="resultats" id='inputTextArea' placeholder='Résultat' rows='3'></textarea>
+                                </div>
+                              </div>
+
+                            </div>
+                            <div class='step-pane' data-step='4'>
+                               <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Décisions</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="decisions" id='inputTextArea' placeholder='Décisions' rows='3'></textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Conclusion</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="conclusion" id='inputTextArea' placeholder='Conclusion' rows='3'></textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                                <label class='control-label' for='inputTextArea'>Autres commentaites</label>
+                                <div class='controls'>
+                                  <textarea class='form-control' name="autres_commentaires" id='inputTextArea' placeholder='Autres commentaites' rows='3'></textarea>
+                                </div>
+                              </div>
+                                <div class='form-group col-sm-6'>
+                        <div class='form-actions form-actions-padding' style='margin-bottom: 0;'>
+                          <div class='text-right'>
+                              <div class='btn btn-danger btn-lg'>
+                              <i class='fa fa-close'></i>
+                              Annuler
+                            </div>
+
+                              <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-floppy-o"> Enregistrer</i></button>
+
+                              <div class='btn btn-warning btn-lg'>
+                              <i class='fa fa-archive'></i>
+                              Cloturer
+                            </div>
+                          </div>
+
+                        </div>
+                                </div>
+                            </div>
+                          </div>
+
+
+
+                          </form>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="grp-fixed-footer" id='footer'>
+            <div class='footer-wrapper'>
+              <div class='row'>
+                <div class='col-sm-6 text'>
+                  Copyright © 2018 ARCEP-BENIN Tout droits résevés
+                </div>
+                <div class='col-sm-6 buttons'>
+                  <a class="btn btn-link" href="index.html">Contacter le développeur</a>
+                  <a class="btn btn-link" href="http://www.arcep.bj">www.arcep.bj</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+{% endblock %}

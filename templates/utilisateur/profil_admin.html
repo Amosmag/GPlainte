@@ -1,0 +1,133 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header'>
+                    <h1 class='pull-left'>
+                      <i class='fa fa-user'></i>
+                      <span>Profil d'utilisateur</span>
+                    </h1>
+                    <div class='pull-right'>
+                      <ul class='breadcrumb'>
+                        <li>
+                          <a href='index-2.html'>
+                            <i class='fa fa-bar-chart-o'></i>
+                          </a>
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li>Utilisateurs</li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li class='active'>Profil d'utilisateur</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-3 col-lg-2'>
+                  <div class='box'>
+                    <div class='box-content'>
+                      <img class="img-responsive" src="/static/media/{{ user.photo }}" />
+                    </div>
+                  </div>
+                </div>
+                <div class='col-sm-9 col-lg-10'>
+                  <div class='box'>
+                    <div class='box-content box-double-padding'>
+                      <form method="post" class='form' style='margin-bottom: 0;'>
+                          {% csrf_token %}
+                        <fieldset>
+                          <div class='col-sm-4'>
+                            <div class='lead'>
+                              <i class='fa fa-github text-contrast'></i>
+                              Information d'identification
+                            </div>
+                            <small class='text-muted'>Informations utilisées pour se connecter à l'application</small>
+                          </div>
+                          <div class='col-sm-7 col-sm-offset-1'>
+                            <div class='form-group'>
+                              <label>Nom d'utilisateur</label>
+                              <input class='form-control' id='username' placeholder="Nom d'utilisateur" type='text' value="{{ user.username }}">
+                            </div>
+                            <div class='form-group'>
+                              <label>E-mail</label>
+                              <input class='form-control' id='email' placeholder='E-mail' type='text' value="{{ user.email }}">
+                            </div>
+                            <hr class='hr-normal'>
+                            <div class='form-group'>
+                              <div class='controls'>
+                                <div class='checkbox'>
+                                  <label>
+                                    <input data-target='#change-password' data-toggle='collapse' id='changepasswordcheck' type='checkbox' value='option1'>
+                                    Changer de mot de passe?
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class='collapse' id='change-password'>
+                              <div class='form-group'>
+                                <label>Mot de passe</label>
+                                <input class='form-control' name="password" id='password' placeholder='Mot de passe' type='password'>
+                              </div>
+                              <div class='form-group'>
+                                <label>Confirmation du mot de passe</label>
+                                <input class='form-control' name="password-confirmation" id='password-confirmation' placeholder='Confirmation du mot de passe' type='password'>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                        <hr class='hr-normal'>
+                        <fieldset>
+                          <div class='col-sm-4'>
+                            <div class='lead'>
+                              <i class='fa fa-user text-contrast'></i>
+                              Infos personnelles
+                            </div>
+                            <small class='text-muted'>Informations personnelles de l'utilisateur</small>
+                          </div>
+                          <div class='col-sm-7 col-sm-offset-1'>
+                            <div class='form-group'>
+                              <label>Nom</label>
+                              <input readonly class='form-control' id='firstname' placeholder='Nom' type='text' value="{{ user.last_name }}">
+                            </div>
+                            <div class='form-group'>
+                              <label>Prénoms</label>
+                              <input readonly class='form-control' id='lastname' placeholder='Prénoms' type='text' value="{{ user.first_name }}">
+                            </div>
+                            <div class='form-group'>
+                              <label>Profession</label>
+                              <input class='form-control' id='lastname' placeholder='Profession' type='text' value="{{ user.profession }}">
+                            </div>
+                            <div class='form-group'>
+                              <label>Fonction</label>
+                              <input class='form-control' id='lastname' placeholder='Fonction' type='text' value="{{ user.fonction }}">
+                            </div>
+                            <hr class='hr-normal'>
+
+                          </div>
+                        </fieldset>
+                        <div class='form-actions form-actions-padding' style='margin-bottom: 0;'>
+                          <div class='text-right'>
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-floppy-o"> Enregistrer</i></button>
+                            </div>
+                          </div>
+
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+{% endblock %}
