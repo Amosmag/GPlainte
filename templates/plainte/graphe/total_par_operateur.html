@@ -1,0 +1,183 @@
+{% extends base %}
+
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+              <div class='page-header page-header-with-buttons'>
+                <h1 class='pull-left'>
+                  <i class='fa fa-bar-chart'></i>
+                  <span>Total des plaintes par opérateur</span>
+                </h1>
+
+              </div>
+                <div class='row'>
+                <div class='col-sm-12 box'>
+                  <div class='box-header'>
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                    <div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
+                  </div>
+                </div>
+
+
+
+<table id="datatable">
+    <thead>
+        <tr>
+            <th></th>
+            <th>MTN</th>
+            <th>MOOV</th>
+            <th>LIBERCOM</th>
+            <th>FAI</th>
+            <th>POSTE</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>JANVIER</th>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>FEVRIER</th>
+            <td>2</td>
+            <td>0</td>
+            <td>3</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>MARS</th>
+            <td>5</td>
+            <td>11</td>
+            <td>8</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>AVRIL</th>
+            <td>1</td>
+            <td>1</td>
+            <td>4</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>MAI</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>JUIN</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>JUILLET</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>AOUT</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>SEPTEMBRE</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>OCTOBRE</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>NOVEMBRE</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>DECEMBRE</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>TOTAUX</th>
+            <td>10</td>
+            <td>14</td>
+            <td>9</td>
+            <td>6</td>
+            <td>8</td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="/static/code/highcharts.js"></script>
+<script src="/static/code/modules/data.js"></script>
+<script src="/static/code/modules/exporting.js"></script>
+		<script type="text/javascript">
+
+Highcharts.chart('container', {
+    data: {
+        table: 'datatable'
+    },
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: ''
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Nombre'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
+		</script>
+
+{% endblock %}
