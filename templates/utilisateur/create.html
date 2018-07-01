@@ -1,0 +1,141 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header'>
+                    <h1 class='pull-left'>
+                      <i class='fa fa-user'></i>
+                      <span>Création d'un utilisateur</span>
+                    </h1>
+                    <div class='pull-right'>
+                      <ul class='breadcrumb'>
+                        <li>
+                          <a href='#'>
+                            <i class='fa fa-bar-chart-o'></i>
+                          </a>
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li>Utilisateurs</li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li class='active'>Fiche utilisateur</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                  <form name="creer" class='form' style='margin-bottom: 0;' method="post" action="{% url 'nouveau_utilisateur' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class='col-sm-3 col-lg-2'>
+                          <h4>Photo</h4>
+                  <div class='box'>
+                    <div class='box-content'>
+                      <img id="photo" name="photo" class="img-responsive" src="" />
+                    </div>
+                  </div>
+
+                    <input name="photo" type="file" accept="image/*" onchange="loadFile(event)" >
+
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var photo = document.getElementById('photo');
+      photo.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+                </div>
+                <div class='col-sm-9 col-lg-10'>
+                  <div class='box'>
+                    <div class='box-content box-double-padding'>
+
+                        <fieldset>
+                          <div class='col-sm-4'>
+                            <div class='lead'>
+                              <i class='fa fa-github text-contrast'></i>
+                              Information d'identification
+                            </div>
+                            <small class='text-muted'>Informations utilisées pour se connecter à l'application</small>
+                          </div>
+                          <div class='col-sm-7 col-sm-offset-1'>
+                            <div class='form-group'>
+                              <label>Nom d'utilisateur</label>
+                              <input class='form-control' id='username' name="username" placeholder="Nom d'utilisateur" type='text' >
+                            </div>
+                            <div class='form-group'>
+                              <label>E-mail</label>
+                              <input class='form-control' id='email' name="email" placeholder='E-mail' type='text'>
+                            </div>
+                            <hr class='hr-normal'>
+
+                              <div class='form-group'>
+                                <label>Mot de passe</label>
+                                <input class='form-control' id='password' name="password" placeholder='Mot de passe' type='password'>
+                              </div>
+                              <div class='form-group'>
+                                <label>Confirmation du mot de passe</label>
+                                <input class='form-control' id='password-confirmation' name="password-confirmation" placeholder='Confirmation du mot de passe' type='password'>
+                              </div>
+
+                          </div>
+                        </fieldset>
+                        <hr class='hr-normal'>
+                        <fieldset>
+                          <div class='col-sm-4'>
+                            <div class='lead'>
+                              <i class='fa fa-user text-contrast'></i>
+                              Infos personnelles
+                            </div>
+                            <small class='text-muted'>Informations personnelles de l'utilisateur</small>
+                          </div>
+                          <div class='col-sm-7 col-sm-offset-1'>
+                            <div class='form-group'>
+                              <label>Nom</label>
+                              <input value="" class='form-control' id='first_name' name="first_name" placeholder='Nom' type='text' onchange = "document.forms.creer.nom_prenoms.value = document.forms.creer.first_name.value + ' ' + document.forms.creer.last_name.value" onfocus="this.addButtonHandler()">
+                            </div>
+                            <div class='form-group'>
+
+
+                              <input class='form-control hidden' id='nom_prenoms' name="nom_prenoms" placeholder='nom et prenoms' type='text' value="">
+                            </div>
+                            <div class='form-group'>
+                              <label>Prénoms</label>
+                              <input class='form-control' id='last_name' name="last_name" placeholder='Prénoms' type='text' onchange = "document.forms.creer.nom_prenoms.value = document.forms.creer.first_name.value + ' ' + document.forms.creer.last_name.value" onfocus="this.addButtonHandler()">
+                            </div>
+                            <div class='form-group'>
+                              <label>Profession</label>
+                              <input class='form-control' id='profession' name="profession" placeholder='Profession' type='text' >
+                            </div>
+                            <div class='form-group'>
+                              <label>Fonction</label>
+                              <input class='form-control' id='fonction' name="fonction" placeholder='Fonction' type='text' >
+                            </div>
+                            <hr class='hr-normal'>
+
+                          </div>
+                        </fieldset>
+                        <div class='form-actions form-actions-padding' style='margin-bottom: 0;'>
+                          <div class='text-right'>
+                        <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-floppy-o"> Enregistrer</i></button>
+                        </div>
+                        </div>
+                     </div>
+                    </div>
+                    </div>
+                       </form>
+                  </div>
+                </div>
+              </div>
+
+{% endblock %}

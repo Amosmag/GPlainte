@@ -1,0 +1,134 @@
+{% extends base %}
+{% block style %}<script src="/static/code/highcharts.js"></script>
+<script src="/static/code/modules/series-label.js"></script>
+<script src="/static/code/modules/exporting.js"></script>{% endblock %}
+{% block section %}
+<div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+              <div class='page-header page-header-with-buttons'>
+                <h1 class='pull-left'>
+                  <i class='fa fa-line-chart'></i>
+                  <span>Evolution des plaintes sur l'année</span>
+                </h1>
+
+              </div>
+                <div class='row'>
+                <div class='col-sm-12 box'>
+                  <div class='box-header'>
+
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                    <div id="par_operateur" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  </div>
+                </div>
+
+</div></div></div>
+
+
+		<script type="text/javascript">
+
+Highcharts.chart('par_operateur', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: "Evolution du nombre de plaintes reçues par opérateur sur l'année"
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: { // don't display the dummy year
+            month: ' %b',
+            year: '%b'
+        },
+        title: {
+            text: 'Mois'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Nombre de plaintes reçues'
+        },
+        min: 0
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x: %b}: {point.y:.f} plaintes'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'MTN',
+        // Define the data points. All series have a dummy year
+        // of 1970/71 in order to be compared on the same x axis. Note
+        // that in JavaScript, months start at 0 for January, 1 for February etc.
+        data: [
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 28],
+            [Date.UTC(2017, 2, 1), 25],
+            [Date.UTC(2017, 3, 1), 2],
+            [Date.UTC(2017, 4, 1), 28],
+            [Date.UTC(2017, 5, 1), 28],
+            [Date.UTC(2017, 6, 1), 47],
+            [Date.UTC(2017, 7, 1), 79],
+            [Date.UTC(2017, 8, 1), 72],
+            [Date.UTC(2017, 9, 1), 2],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+
+        ]
+    }, {
+        name: 'MOOV',
+        data: [
+
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 15],
+            [Date.UTC(2017, 2, 1), 17],
+            [Date.UTC(2017, 3, 1), 21],
+            [Date.UTC(2017, 4, 1), 12],
+            [Date.UTC(2017, 5, 1), 8],
+            [Date.UTC(2017, 6, 1), 11],
+            [Date.UTC(2017, 7, 1), 18],
+            [Date.UTC(2017, 8, 1), 22],
+            [Date.UTC(2017, 9, 1), 30],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+        ]
+    }, {
+        name: 'GLO',
+        data: [
+
+            [Date.UTC(2017, 0, 1), 20],
+            [Date.UTC(2017, 1, 1), 21],
+            [Date.UTC(2017, 2, 1), 13],
+            [Date.UTC(2017, 3, 1), 14],
+            [Date.UTC(2017, 4, 1), 11],
+            [Date.UTC(2017, 5, 1), 18],
+            [Date.UTC(2017, 6, 1), 22],
+            [Date.UTC(2017, 7, 1), 13],
+            [Date.UTC(2017, 8, 1), 9],
+            [Date.UTC(2017, 9, 1), 21],
+            [Date.UTC(2017, 10, 1), 0],
+            [Date.UTC(2017, 11), 0]
+        ]
+    }]
+});
+		</script>
+	{% endblock %}

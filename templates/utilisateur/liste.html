@@ -1,0 +1,167 @@
+{% extends 'base_admin.html' %}
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='page-header'>
+                    <h1 class='pull-left'>
+                      <i class='fa fa-users'></i>
+                      <span>Utilisateurs</span>
+                    </h1>
+                    <div class='pull-right'>
+                      <ul class='breadcrumb'>
+                        <li>
+                          <a href='#'>
+                            <i class='fa fa-bar-chart-o'></i>
+                          </a>
+                        </li>
+                        <li class='separator'>
+                          <i class='fa fa-angle-right'></i>
+                        </li>
+                        <li class='active'>Liste des utilisateurs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='box bordered-box blue-border' style='margin-bottom:0;'>
+                    <div class='box-header blue-background'>
+                      <div class='title'>Utilisateurs</div>
+                      <div class='actions'>
+                        <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                        </a>
+                        <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class='box-content box-no-padding'>
+                      <div class='responsive-table'>
+                        <div class='scrollable-area'>
+                          <table class='table' style='margin-bottom:0;'>
+                            <thead>
+                              <tr>
+                                <th>
+                                  Nom
+                                </th>
+                                <th>
+                                  Prénoms
+                                </th>
+                                <th>
+                                  Nom d'utilisateur
+                                </th>
+                                <th>
+                                  E-mail
+                                </th>
+                                <th>
+                                  Fonction
+                                </th>
+                                <th>
+                                  Status
+                                </th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                  {% for object in object_list %}
+                                <td>{{ object.last_name }}</td>
+                                <td>{{ object.first_name }}</td>
+                                <td>{{ object.username }}</td>
+                                <td>{{ object.email }}</td>
+                                  <td>{{ object.fonction }}</td>
+                                <td>
+                                {% if object.is_superuser %}
+                                  <span class='label label-success'>Administrateur</span>
+                                    {% else %}
+                                    <span class='label label-warning'>Instructeur</span>
+                                {% endif %}
+                                </td>
+                                <td>
+                                  <div class='text-right'>
+                                    <a class='btn btn-xs' href='{% url "profil" object.pk %}'>
+                                      <i style="color: dodgerblue" class='fa fa-eye fa-2x fa-stack-5x'></i>
+                                    </a>
+                                    <a data-toggle="modal" class='btn btn-xs' href='#{{ object.pk }}'>
+                                      <i style="color: red" class='fa fa-trash fa-2x'></i>
+                                    </a>
+
+                                       <!-- Modal -->
+
+                                        <div align="center" class="modal fade" id="{{ object.pk }}" tabindex="-1" role="dialog" aria-hidden="true" >
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-original-title="" title="">×</button>
+                                                  <h4 class="modal-title">Suppression d'utilisateur</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  Êtes-vous sûr de vouloir supprimer cet utilisateur ?
+                                                    <table class="table table-condensed table-striped table-bordered table-hover no-margin text-center">
+                        <thead>
+                        <tr>
+
+			                      <th style="width:10%" class="text-center">Nom</th>
+			                      <th style="width:10%" class="text-center">Prénoms</th>
+                                  <th style="width:10%" class="text-center">Email</th>
+                                  <th style="width:15%" class="text-center">profession</th>
+                                  <th style="width:15%" class="text-center">Fonction</th>
+			                    </tr>
+                        </thead>
+                            <tbody>
+			                    <tr>
+
+
+			                      <td>
+			                        <span class="name">{{ object.last_name }}</span>
+			                      </td>
+			                      <td class="hidden-phone">{{ object.first_name }}</td>
+                                  <td class="hidden-phone">{{ object.email }}</td>
+                                  <td class="hidden-phone">{{ object.profession }}</td>
+                                  <td class="hidden-phone">{{ object.fonction}}</td>
+
+                                        </tr>
+                                        </tbody>
+                                        </table>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form method="post" action="{% url 'delete_utilisateur' object.id %}">
+
+                                                       {% csrf_token %}  <!-- Nous prenons bien soin d'ajouter le csrf_token -->
+
+
+                                                  <a type="button" class="btn btn-default" href="{% url "liste_utilisateur" %}">NON</a>
+
+                                                  <button type="submit" class="btn btn-primary" data-original-title="" title="">OUI</button>
+                                                     </form>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                          <!-- Modal Small End -->
+                                  </div>
+                                </td>
+                              </tr>
+
+                            </tbody>
+                              {% endfor %}
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+{% endblock %}

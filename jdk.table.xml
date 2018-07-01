@@ -1,18 +1,19 @@
 <application>
   <component name="ProjectJdkTable">
     <jdk version="2">
-      <name value="Python 3.6.1 (D:\Program Files (x86)\Python36-32\python.exe)" />
+      <name value="Python 3.6.1 (C:\Program Files (x86)\Python36-32\python.exe)" />
       <type value="Python SDK" />
       <version value="Python 3.6.1" />
-      <homePath value="D:\Program Files (x86)\Python36-32\python.exe" />
+      <homePath value="C:\Program Files (x86)\Python36-32\python.exe" />
       <roots>
         <classPath>
           <root type="composite">
-            <root url="file://D:/Program Files (x86)/Python36-32/DLLs" type="simple" />
-            <root url="file://D:/Program Files (x86)/Python36-32/Lib" type="simple" />
-            <root url="file://D:/Program Files (x86)/Python36-32" type="simple" />
-            <root url="file://D:/Program Files (x86)/Python36-32/Lib/site-packages" type="simple" />
-            <root url="file://$USER_HOME$/.PyCharm2017.3/system/python_stubs/-297851564" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32/DLLs" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32/Lib" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32" type="simple" />
+            <root url="file://$USER_HOME$/AppData/Roaming/Python/Python36/site-packages" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32/Lib/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharm2017.3/system/python_stubs/1402888915" type="simple" />
             <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
             <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
             <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
@@ -29,6 +30,39 @@
         </sourcePath>
       </roots>
       <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.6 (GPlainte)" />
+      <type value="Python SDK" />
+      <version value="Python 3.6.1" />
+      <homePath value="C:\Users\Administrateur\PycharmProjects\GPlainte\venv\Scripts\python.exe" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://C:/Program Files (x86)/Python36-32/DLLs" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32/Lib" type="simple" />
+            <root url="file://C:/Program Files (x86)/Python36-32" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/gplainte/venv" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/gplainte/venv/Lib/site-packages" type="simple" />
+            <root url="jar://$USER_HOME$/PycharmProjects/gplainte/venv/Lib/site-packages/setuptools-28.8.0-py3.6.egg!/" type="simple" />
+            <root url="file://$USER_HOME$/PycharmProjects/gplainte/venv/Lib/site-packages/pip-9.0.1-py3.6.egg" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharm2017.3/system/python_stubs/-359487837" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.4" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/PycharmProjects/GPlainte" />
     </jdk>
   </component>
 </application>

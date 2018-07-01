@@ -1,0 +1,491 @@
+{% extends base %}
+{% load static %}
+{% block style %}<link href="/static/stylesheets/plugins/datatables/datatables.css" rel="stylesheet" type="text/css" media="all" />{% endblock %}
+{% block section %}
+
+        <div class='container'>
+          <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+              <div class='page-header page-header-with-buttons'>
+                <h1 class='pull-left'>
+                  <i class='fa fa-tachometer'></i>
+                  <span>Tableau de bord</span>
+                </h1>
+
+              </div>
+              <div class='alert alert-info alert-dismissable'>
+                <a class='close' data-dismiss='alert' href='#'>&times;</a>
+                Bienvenue sur
+                <strong>GPlainte</strong>
+                La plate-forme de gestion des plaintes de l'ARCEP-BENIN
+              </div>
+
+                <div class='row'>
+                <div class='col-sm-12 col-md-6'>
+                  <div class='box'>
+                    <div class='box-header'>
+                      <div class='title'>
+                        <div class='fa fa-inbox'></div>
+                        Statistiques générales
+                      </div>
+                      <div class='actions'>
+                        <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                        </a>
+                        <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-sm-6'>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-info'>{{ total }}</h3>
+                          <small>Plaintes reçues au total </small>
+                          <div class='text-info fa fa-list align-right'></div>
+                        </div>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-warning'>{{ encours }}</h3>
+                          <small>Plaintes en cours de traitement</small>
+                          <div class='text-warning fa fa-clock-o align-right'></div>
+                        </div>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-success'>{{ cloture }}</h3>
+                          <small>Plaintes traitées</small>
+                          <div class='text-success fa fa-check-square-o align-right'></div>
+                        </div>
+                      </div>
+                      <div class='col-sm-6'>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-primary'>{{ cemois }}</h3>
+                          <small>Plaintes reçues dans ce mois</small>
+                          <div class='text-primary fa fa-truck align-right'></div>
+                        </div>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-success'>???</h3>
+                          <small>Dossiers recevable</small>
+                          <div class='text-success fa fa-inbox align-right'></div>
+                        </div>
+                        <div class='box-content box-statistic'>
+                          <h3 class='title text-error'>???</h3>
+                          <small>Dossiers rejetés</small>
+                          <div class='text-error fa fa-times align-right'></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-sm-6 col-md-3'>
+                  <div class='box'>
+                    <div class='box-header'>
+                      <div class='title'>
+                        <i class='fa fa-eye'></i>
+                        Vue rapide
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-sm-12'>
+                        <div style="background: black" class='box-content box-statistic'>
+                          <h3 style="color: gold" class='title'>{{ mtn }}</h3>
+                          <small style="color: #d9edf7">Plainte contre MTN</small>
+                          <div style="color: gold" class='fa fa-flag align-right'></div>
+                        </div>
+                        <div style="background: black" class='box-content box-statistic'>
+                          <h3 class='title text-green'>{{ moov }}</h3>
+                          <small style="color: #d9edf7">Plainte contre MOOV</small>
+                          <div class='text-green fa fa-flag align-right'></div>
+                        </div>
+                        <div style="background: black" class='box-content box-statistic'>
+                          <h3 class='title text-primary'>???</h3>
+                          <small style="color: #d9edf7">Secteur postal</small>
+                          <div class='text-primary fa fa-flag align-right'></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-sm-6 col-md-3'>
+                  <div class='box'>
+                    <div class='box-header'>
+                      <div class='title'>
+                        <i class='fa fa-comments'></i>
+                        Part par canal
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-sm-12'>
+                         <div id="par_canal" style="min-width: 310px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class='row'>
+                <div class='col-sm-12 box'>
+                  <div class='box-header'>
+                    <div class='title'>
+                      <i class='fa fa-inbox'></i>
+                      Evolution des plaintes
+                    </div>
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                    <div id="par_operateur" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  </div>
+                </div>
+                <div class='col-sm-6 box'>
+                  <div class='box-header'>
+                    <div class='title'>
+                      <i class='fa fa-users'></i>
+                      A completter
+                    </div>
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                   Emplacement du graphe
+                  </div>
+                </div>
+
+                <div class='col-sm-6 box'>
+                  <div class='box-header'>
+                    <div class='title'>
+                      <i class='fa fa-users'></i>
+                      Statistique sur les opérateurs
+                    </div>
+                    <div class='actions'>
+                      <a class="btn box-remove btn-xs btn-link" href="#"><i class='fa fa-times'></i>
+                      </a>
+                      <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class='box-content'>
+                     <div id="placeholder" style="width:600px;height:300px;"></div>
+
+
+    <p id="choices">Show:</p>
+                  </div>
+                </div>
+
+              </div>
+              <hr class='hr-drouble'>
+{% include 'horloge.html' %}
+
+    <script language="javascript" type="text/javascript" src="/static/javascripts/plugins/flot/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/javascripts/plugins/flot/jquery.flot.js"></script>
+<script type="text/javascript">
+$(function () {
+    var datasets = {
+        "mtn": {
+            label: "MTN",
+            data: [[1, 54], [2, 25], [3, 32], [4, 41], [5, 84], [6, 21], [7, 12], [8, 20], [9, 16], [10, 19], [11, 23], [12, 50]]
+        },
+        "moov": {
+            label: "MOOV",
+            data: [[1, 23], [2, 13], [3, 17], [4, 27], [5, 30], [6, 26], [7, 23], [8, 35], [9, 22], [10, 19], [11, 15], [12, 31]]
+        },
+        "libercom": {
+            label: "LIBERCOM",
+            data: [[1, 34], [2, 20], [3, 10], [4, 6], [5, 8], [6, 2], [7, 14], [8, 9], [9, 11], [10, 5], [11, 13], [12, 18]]
+        },
+        "btsa": {
+            label: "BTSa",
+            data: [[1, 9], [2, 11], [3, 8], [4, 15], [5, 18], [6, 16], [7, 14], [8, 6], [9, 3], [10, 7], [11, 4], [12, 10]]
+        }
+
+    };
+
+    // hard-code color indices to prevent them from shifting as
+    // countries are turned on/off
+    var i = 0;
+    $.each(datasets, function(key, val) {
+        val.color = i;
+        ++i;
+    });
+
+    // insert checkboxes
+    var choiceContainer = $("#choices");
+    $.each(datasets, function(key, val) {
+        choiceContainer.append('<br/><input type="checkbox" name="' + key +
+                               '" checked="checked" id="id' + key + '">' +
+                               '<label for="id' + key + '">'
+                                + val.label + '</label>');
+    });
+    choiceContainer.find("input").click(plotAccordingToChoices);
+
+
+    function plotAccordingToChoices() {
+        var data = [];
+
+        choiceContainer.find("input:checked").each(function () {
+            var key = $(this).attr("name");
+            if (key && datasets[key])
+                data.push(datasets[key]);
+        });
+
+        if (data.length > 0)
+            $.plot($("#placeholder"), data, {
+                yaxis: { min: 0 },
+                xaxis: { tickDecimals: 0 }
+            });
+    }
+
+    plotAccordingToChoices();
+});
+</script>
+
+
+
+
+            </div>
+
+          </div>
+<!----------Horloge---------->
+
+<script src="/static/code/highcharts.js"></script>
+<script src="/static/code/highcharts-more.js"></script>
+<script type="text/javascript">
+
+
+/**
+ * Get the current time
+ */
+function getNow() {
+    var now = new Date();
+
+    return {
+        hours: now.getHours() + now.getMinutes() / 60,
+        minutes: now.getMinutes() * 12 / 60 + now.getSeconds() * 12 / 3600,
+        seconds: now.getSeconds() * 12 / 60
+    };
+}
+
+/**
+ * Pad numbers
+ */
+function pad(number, length) {
+    // Create an array of the remaining length + 1 and join it with 0's
+    return new Array((length || 2) + 1 - String(number).length).join(0) + number;
+}
+
+var now = getNow();
+
+// Create the chart
+Highcharts.chart('horloge', {
+
+    chart: {
+        type: 'gauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: null,
+        plotBorderWidth: 0,
+        plotShadow: false,
+        height: 200
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    title: {
+        text: ''
+    },
+
+    pane: {
+        background: [{
+            // default background
+        }, {
+            // reflex for supported browsers
+            backgroundColor: Highcharts.svg ? {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: -0.4,
+                    r: 1.9
+                },
+                stops: [
+                    [0.5, 'rgba(255, 255, 255, 0.2)'],
+                    [0.5, 'rgba(200, 200, 200, 0.2)']
+                ]
+            } : null
+        }]
+    },
+
+    yAxis: {
+        labels: {
+            distance: -20
+        },
+        min: 0,
+        max: 12,
+        lineWidth: 0,
+        showFirstLabel: false,
+
+        minorTickInterval: 'auto',
+        minorTickWidth: 1,
+        minorTickLength: 5,
+        minorTickPosition: 'inside',
+        minorGridLineWidth: 0,
+        minorTickColor: '#666',
+
+        tickInterval: 1,
+        tickWidth: 2,
+        tickPosition: 'inside',
+        tickLength: 10,
+        tickColor: '#666',
+        title: {
+            text: 'Powered by<br/>Highcharts',
+            style: {
+                color: '#BBB',
+                fontWeight: 'normal',
+                fontSize: '8px',
+                lineHeight: '10px'
+            },
+            y: 10
+        }
+    },
+
+    tooltip: {
+        formatter: function () {
+            return this.series.chart.tooltipText;
+        }
+    },
+
+    series: [{
+        data: [{
+            id: 'hour',
+            y: now.hours,
+            dial: {
+                radius: '60%',
+                baseWidth: 4,
+                baseLength: '95%',
+                rearLength: 0
+            }
+        }, {
+            id: 'minute',
+            y: now.minutes,
+            dial: {
+                baseLength: '95%',
+                rearLength: 0
+            }
+        }, {
+            id: 'second',
+            y: now.seconds,
+            dial: {
+                radius: '100%',
+                baseWidth: 1,
+                rearLength: '20%'
+            }
+        }],
+        animation: false,
+        dataLabels: {
+            enabled: false
+        }
+    }]
+},
+
+    // Move
+    function (chart) {
+        setInterval(function () {
+
+            now = getNow();
+
+            if (chart.axes) { // not destroyed
+                var hour = chart.get('hour'),
+                    minute = chart.get('minute'),
+                    second = chart.get('second'),
+                    // run animation unless we're wrapping around from 59 to 0
+                    animation = now.seconds === 0 ?
+                        false : {
+                            easing: 'easeOutBounce'
+                        };
+
+                // Cache the tooltip text
+                chart.tooltipText =
+                    pad(Math.floor(now.hours), 2) + ':' +
+                    pad(Math.floor(now.minutes * 5), 2) + ':' +
+                    pad(now.seconds * 5, 2);
+
+
+                hour.update(now.hours, true, animation);
+                minute.update(now.minutes, true, animation);
+                second.update(now.seconds, true, animation);
+            }
+
+        }, 1000);
+
+    });
+
+/**
+ * Easing function from https://github.com/danro/easing-js/blob/master/easing.js
+ */
+Math.easeOutBounce = function (pos) {
+    if ((pos) < (1 / 2.75)) {
+        return (7.5625 * pos * pos);
+    }
+    if (pos < (2 / 2.75)) {
+        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
+    }
+    if (pos < (2.5 / 2.75)) {
+        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
+    }
+    return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
+};
+
+		</script>
+
+        <script type="text/javascript">
+
+// Build the chart
+Highcharts.chart('par_canal', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ""
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Canal',
+        colorByPoint: true,
+        data: [{
+            name: 'Ligne verte',
+            y: {{ ligne }}
+        }, {
+            name: 'Site web',
+            y: {{ site }},
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Courrier',
+            y: {{ courrier }}
+        }, {
+            name: 'Email',
+            y: {{ email }}
+        }]
+    }]
+});
+		</script>
+
+{% endblock %}
